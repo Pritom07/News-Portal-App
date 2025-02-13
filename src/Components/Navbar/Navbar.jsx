@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import user from "../../assets/user.png";
 
 const Navbar = () => {
   const listitems = (
@@ -37,7 +38,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {listitems}
             </ul>
@@ -47,6 +48,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{listitems}</ul>
         </div>
         <div className="navbar-end">
+          <img src={user} className="mr-2" />
           <button className="btn bg-black text-white">Login</button>
         </div>
       </div>

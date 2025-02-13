@@ -1,6 +1,7 @@
 import Marquee from "react-fast-marquee";
 import Heading from "../../Heading/Heading";
 import Navbar from "../../Navbar/Navbar";
+import UnderNavsection from "../../UnderNavsection/UnderNavsection";
 
 const Homelayout = () => {
   return (
@@ -11,7 +12,10 @@ const Homelayout = () => {
           <button className="bg-red-700 text-white px-3 py-2 mr-2 font-semibold">
             Latest
           </button>
-          <Marquee className="font-semibold text-[#403F3F] text-[18px]">
+          <Marquee
+            pauseOnHover={true}
+            className="font-semibold text-[#403F3F] text-[18px] cursor-pointer"
+          >
             <p>Trump Announces 25% Tariffs on Foreign Steel and Aluminum.</p>
             <p className="ml-2">
               Elon Musk-Led Group Makes Surprise Bid of Nearly $100 Billion for
@@ -28,10 +32,12 @@ const Homelayout = () => {
           </Marquee>
         </section>
       </header>
-      <nav>
+      <nav className="mt-1">
         <Navbar></Navbar>
       </nav>
-      <main></main>
+      <main className="mt-3">
+        <UnderNavsection></UnderNavsection>
+      </main>
     </div>
   );
 };
