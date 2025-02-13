@@ -7,7 +7,7 @@ const NewsCard = ({ news }) => {
   const { author, title, thumbnail_url, details, rating, total_view } = news;
 
   return (
-    <div className="bg-white shadow-md space-y-3 mb-3.5">
+    <div className="bg-white shadow-md space-y-3 mb-4">
       <div className="flex justify-between items-center bg-slate-100 px-2 py-2.5">
         <div className="flex items-center space-x-3">
           <img

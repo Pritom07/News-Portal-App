@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import user from "../../assets/user.png";
+import navlogo from "../../assets/nav-logo.png";
 
 const Navbar = () => {
   const listitems = (
@@ -36,6 +37,7 @@ const Navbar = () => {
                 />
               </svg>
             </div>
+            <img src={navlogo} className="w-7 inline" />
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"

@@ -3,6 +3,10 @@ import { AiOutlineGithub } from "react-icons/ai";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
+import swimming from "../../assets/swimming.png";
+import classpng from "../../assets/class.png";
+import playground from "../../assets/playground.png";
+import backphoto from "../../assets/bg.png";
 
 const LoginWithpart = () => {
   return (
@@ -34,6 +38,17 @@ const LoginWithpart = () => {
             Instagram
           </button>
         </div>
+      </section>
+      <section className="bg-slate-100 mt-11 rounded-[6px]">
+        <p className="font-semibold text-xl pl-3 pt-3">Q-Zone</p>
+        <div className="grid grid-cols-1 gap-3 px-4 mt-3 pb-5">
+          <img src={swimming} />
+          <img src={classpng} />
+          <img src={playground} />
+        </div>
+      </section>
+      <section className="mt-5 mb-4">
+        <img src={backphoto} className="w-full" />
       </section>
     </div>
   );
