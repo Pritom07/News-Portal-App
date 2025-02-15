@@ -10,6 +10,8 @@ import Homelayout from "./Components/Layouts/Homelayout/Homelayout";
 import Newslayout from "./Components/Layouts/Newslayout/Newslayout";
 import Authlayout from "./Components/Layouts/Authlayout/Authlayout";
 import CategoryNews from "./Components/CategoryNews/CategoryNews";
+import Loginpage from "./Components/Pages/Loginpage/Loginpage";
+import Signup from "./Components/Pages/Signup/Signup";
 
 const getBreakingNewsCategory = async () => {
   const response = await fetch(
@@ -53,6 +55,16 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Authlayout></Authlayout>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Loginpage></Loginpage>,
+      },
+      {
+        path: "/auth/signup",
+        element: <Signup></Signup>,
+      },
+    ],
   },
   {
     path: "*",

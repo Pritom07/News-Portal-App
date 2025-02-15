@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import user from "../../assets/user.png";
 import navlogo from "../../assets/nav-logo.png";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const listitems = (
     <>
       <li className="font-Poppins text-[18px] text-[#706F6F]">
@@ -16,6 +17,11 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogin = () => {
+    navigate("/auth/login");
+  };
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -51,7 +57,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <img src={user} className="mr-2" />
-          <button className="btn bg-black text-white">Login</button>
+          <button onClick={handleLogin} className="btn bg-black text-white">
+            Login
+          </button>
         </div>
       </div>
     </div>

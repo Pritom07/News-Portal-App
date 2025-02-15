@@ -1,7 +1,13 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "../../Navbar/Navbar";
+
 const Authlayout = () => {
   return (
-    <div>
-      <h1>Authlayout</h1>
+    <div className="mt-1 max-w-7xl mx-auto">
+      <section>
+        <Navbar></Navbar>
+        <Outlet></Outlet>
+      </section>
     </div>
   );
 };
