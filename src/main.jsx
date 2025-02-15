@@ -12,6 +12,7 @@ import Authlayout from "./Components/Layouts/Authlayout/Authlayout";
 import CategoryNews from "./Components/CategoryNews/CategoryNews";
 import Loginpage from "./Components/Pages/Loginpage/Loginpage";
 import Signup from "./Components/Pages/Signup/Signup";
+import Provider from "./Components/Provider/Provider";
 
 const getBreakingNewsCategory = async () => {
   const response = await fetch(
@@ -78,6 +79,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </StrictMode>
 );
