@@ -2,12 +2,22 @@ import { FaEye } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
-  const { author, title, thumbnail_url, details, rating, total_view } = news;
+  const { _id, author, title, thumbnail_url, details, rating, total_view } =
+    news;
+  const navigate = useNavigate();
+
+  const ShowNewsDetails = () => {
+    navigate(`/news/${_id}`);
+  };
 
   return (
-    <div className="bg-white shadow-md space-y-3 mb-4">
+    <div
+      onClick={ShowNewsDetails}
+      className="bg-white shadow-md space-y-3 mb-4"
+    >
       <div className="flex justify-between items-center bg-slate-100 px-2 py-2.5">
         <div className="flex items-center space-x-3">
           <img
