@@ -11,7 +11,7 @@ const Navbar = () => {
   const listitems = (
     <>
       <li className="font-Poppins text-[18px] text-[#706F6F]">
-        <NavLink to="">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li className="font-Poppins text-[18px] text-[#706F6F]">
         <NavLink to="">About</NavLink>

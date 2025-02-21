@@ -15,6 +15,7 @@ import Register from "./Components/Pages/Register/Register";
 import Provider from "./Components/Provider/Provider";
 import { ToastContainer, Zoom } from "react-toastify";
 import NewsDetails from "./Components/NewsDetails/NewsDetails";
+import PrivateRouter from "./Components/PrivateRouter/PrivateRouter";
 
 const getBreakingNewsCategory = async () => {
   const response = await fetch(
@@ -62,7 +63,11 @@ const router = createBrowserRouter([
           fetch(
             `https://openapi.programming-hero.com/api/news/${params.newsId}`
           ),
-        element: <NewsDetails></NewsDetails>,
+        element: (
+          <PrivateRouter>
+            <NewsDetails></NewsDetails>
+          </PrivateRouter>
+        ),
       },
     ],
   },

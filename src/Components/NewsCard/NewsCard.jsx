@@ -2,7 +2,7 @@ import { FaEye } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
   const { _id, author, title, thumbnail_url, details, rating, total_view } =

@@ -15,12 +15,15 @@ export const ThemeContext = createContext(null);
 
 const Provider = ({ children }) => {
   const [User, setUser] = useState(null);
+  const [loading, setloading] = useState(true);
 
   const createAccount = (email, password) => {
+    setloading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInAccount = (email, password) => {
+    setloading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -31,6 +34,7 @@ const Provider = ({ children }) => {
       } else {
         setUser(null);
       }
+      setloading(false);
     });
     return () => {
       cuurrentUser();
@@ -71,6 +75,7 @@ const Provider = ({ children }) => {
     passResetEmail,
     googleLogin,
     githubLogin,
+    loading,
   };
   return (
     <div>

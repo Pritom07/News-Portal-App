@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useContext, useRef, useState } from "react";
@@ -10,6 +10,8 @@ const Loginpage = () => {
   const [error, Seterror] = useState(" ");
   const navigate = useNavigate();
   const emailref = useRef(null);
+  const location = useLocation();
+  console.log(location);
 
   const [seepass, Setseepass] = useState(true);
   const handleseepass = () => {
@@ -28,6 +30,10 @@ const Loginpage = () => {
         if (!result.user.emailVerified) {
           Seterror("E-mail is not verified !");
           return;
+        } else {
+          {
+            location?.state ? navigate(location?.state) : navigate("/");
+          }
         }
       })
       .catch((err) => {
