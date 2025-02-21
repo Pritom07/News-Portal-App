@@ -11,8 +11,9 @@ import Newslayout from "./Components/Layouts/Newslayout/Newslayout";
 import Authlayout from "./Components/Layouts/Authlayout/Authlayout";
 import CategoryNews from "./Components/CategoryNews/CategoryNews";
 import Loginpage from "./Components/Pages/Loginpage/Loginpage";
-import Signup from "./Components/Pages/Signup/Signup";
+import Register from "./Components/Pages/Register/Register";
 import Provider from "./Components/Provider/Provider";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const getBreakingNewsCategory = async () => {
   const response = await fetch(
@@ -62,8 +63,8 @@ const router = createBrowserRouter([
         element: <Loginpage></Loginpage>,
       },
       {
-        path: "/auth/signup",
-        element: <Signup></Signup>,
+        path: "/auth/register",
+        element: <Register></Register>,
       },
     ],
   },
@@ -81,6 +82,12 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider>
       <RouterProvider router={router}></RouterProvider>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        theme="dark"
+        transition={Zoom}
+      ></ToastContainer>
     </Provider>
   </StrictMode>
 );

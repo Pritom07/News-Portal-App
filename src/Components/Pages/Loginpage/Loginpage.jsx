@@ -1,12 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "../../Provider/Provider";
+import { toast } from "react-toastify";
 
 const Loginpage = () => {
-  const { signInAccount } = useContext(ThemeContext);
+  const { signInAccount, passResetEmail } = useContext(ThemeContext);
+  const [error, Seterror] = useState(" ");
   const navigate = useNavigate();
+  const emailref = useRef(null);
 
   const [seepass, Setseepass] = useState(true);
   const handleseepass = () => {
@@ -18,18 +21,42 @@ const Loginpage = () => {
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
+    Seterror(" ");
 
     signInAccount(email, password)
-      .then((result) => {})
-      .catch((err) => {});
+      .then((result) => {
+        if (!result.user.emailVerified) {
+          Seterror("E-mail is not verified !");
+          return;
+        }
+      })
+      .catch((err) => {
+        Seterror(err.message);
+      });
+  };
+
+  const handleforgetpass = () => {
+    const email = emailref.current.value;
+    passResetEmail(email)
+      .then(() => {
+        toast.success("Check your E-mail to reset your Password");
+      })
+      .catch((err) => {
+        Seterror(err.message);
+      });
   };
   return (
     <div className="mt-1">
       <div className="hero">
         <div className="hero-content">
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
-              <form onSubmit={handlesigninform}>
+            <div className="card-body border-2 border-slate-100">
+              <div className="border-b-2 border-slate-300">
+                <h1 className="font-semibold text-2xl text-center text-nowrap pb-5">
+                  LogIn your Account
+                </h1>
+              </div>
+              <form onSubmit={handlesigninform} className="mt-1.5">
                 <fieldset className="fieldset">
                   <label className="fieldset-label">Email</label>
                   <input
@@ -37,6 +64,7 @@ const Loginpage = () => {
                     className="input"
                     placeholder="Email"
                     name="email"
+                    ref={emailref}
                     required
                   />
                   <label className="fieldset-label">Password</label>
@@ -55,7 +83,7 @@ const Loginpage = () => {
                     {seepass ? <FaEye /> : <FaEyeSlash />}
                   </div>
 
-                  <div>
+                  <div onClick={handleforgetpass}>
                     <a className="link link-hover text-[15px]">
                       Forgot password?
                     </a>
@@ -68,13 +96,18 @@ const Loginpage = () => {
               <p className="text-[16px]">
                 Don't have an account? go to
                 <span className="ml-1 text-red-700 font-medium">
-                  <Link to="/auth/signup">SignUp</Link>
+                  <Link to="/auth/register">Register</Link>
                 </span>
               </p>
             </div>
           </div>
         </div>
       </div>
+      {error && (
+        <p className="text-red-700 text-xl font-semibold flex justify-center items-center">
+          {error}
+        </p>
+      )}
     </div>
   );
 };

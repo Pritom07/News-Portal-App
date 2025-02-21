@@ -1,9 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import user from "../../assets/user.png";
+import userlogo from "../../assets/userlogo.png";
 import navlogo from "../../assets/nav-logo.png";
+import { useContext } from "react";
+import { ThemeContext } from "../Provider/Provider";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { User, signOutAccount } = useContext(ThemeContext);
+
   const listitems = (
     <>
       <li className="font-Poppins text-[18px] text-[#706F6F]">
@@ -20,6 +24,16 @@ const Navbar = () => {
 
   const handleLogin = () => {
     navigate("/auth/login");
+  };
+
+  const handlelogout = () => {
+    signOutAccount()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -56,10 +70,26 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{listitems}</ul>
         </div>
         <div className="navbar-end">
-          <img src={user} className="mr-2" />
-          <button onClick={handleLogin} className="btn bg-black text-white">
-            Login
-          </button>
+          {User ? (
+            <div>
+              <p className="inline font-semibold text-xl mr-2.5 text-blue-700">
+                {User.displayName}
+              </p>
+              <button
+                onClick={handlelogout}
+                className="btn bg-black text-white"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div>
+              <img src={userlogo} className="mr-2 inline" />
+              <button onClick={handleLogin} className="btn bg-black text-white">
+                Login
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

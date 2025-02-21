@@ -4,9 +4,11 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { FaStarOfLife } from "react-icons/fa6";
 import { ThemeContext } from "../../Provider/Provider";
+import { toast } from "react-toastify";
 
-const Signup = () => {
-  const { createAccount } = useContext(ThemeContext);
+const Register = () => {
+  const { createAccount, updateUserProfile, userVerificationEmail } =
+    useContext(ThemeContext);
   const navigate = useNavigate();
 
   const [seepass, Setseepass] = useState(true);
@@ -22,19 +24,35 @@ const Signup = () => {
     const email = form.get("email");
     const password = form.get("password");
 
+    const userinfo = {
+      displayName: name,
+      photoURL: photourl,
+    };
+
     createAccount(email, password)
       .then((result) => {
+        updateUserProfile(userinfo)
+          .then(() => {})
+          .catch((err) => {});
+        userVerificationEmail().then(() => {
+          toast("A verification Message is sent in your given E-mail");
+        });
         navigate("/auth/login");
       })
       .catch((err) => {});
   };
   return (
-    <div className="mt-1">
+    <div className="-mt-3">
       <div className="hero">
         <div className="hero-content">
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
-              <form onSubmit={handlesignupform}>
+              <div className="border-b-2 border-slate-300">
+                <h1 className="font-semibold text-2xl text-center text-nowrap pb-5">
+                  Register your Account
+                </h1>
+              </div>
+              <form onSubmit={handlesignupform} className="mt-1.5">
                 <fieldset className="fieldset">
                   <label className="fieldset-label">
                     Name
@@ -103,4 +121,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;
