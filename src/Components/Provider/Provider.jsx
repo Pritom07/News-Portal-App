@@ -4,6 +4,7 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -52,6 +53,14 @@ const Provider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
+  const googleLogin = (Googleprovider) => {
+    return signInWithPopup(auth, Googleprovider);
+  };
+
+  const githubLogin = (Githubprovider) => {
+    return signInWithPopup(auth, Githubprovider);
+  };
+
   const info = {
     createAccount,
     signInAccount,
@@ -60,6 +69,8 @@ const Provider = ({ children }) => {
     updateUserProfile,
     userVerificationEmail,
     passResetEmail,
+    googleLogin,
+    githubLogin,
   };
   return (
     <div>
